@@ -1,51 +1,58 @@
-/**
- * Represents a book.
- * @constructor
- * @param {string} title - The title of the book.
- * @param {string} author - The author of the book.
- */
-function Book(title, author) {}
+/** @author 꾸생 <macjjuni@gmail.com> */
+/** @version 1.0 */
 
 /**
- * Both of these will link to the bar function.
- * @see {@link bar}
- * @see bar
+ * Todo 주요 객체
+ * 
+ * @class
+ * @property {string} id 				ID 식별자(require)
+ * @property {string} content 	내용(require)
+ * @property {boolean} isDone 	완료여부(require)
+ * @property {string} category 	카테고리(optional)
+ * @property {string[]} tag 		태그(optional)
  */
-function foo() {}
-
-// Use the inline {@link} tag to include a link within a free-form description.
-/**
- * @see {@link foo} for further information.
- * @see {@link http://github.com|GitHub}
- */
-function bar() {}
+class Todo {}
 
 /**
- * Generic dairy product.
- * @constructor
+ * 할 일을 추가할 수 있다.
+ * 내용없이 추가할 수 없다.
+ * @construcor
+ * @param {string} content - (require)
+ * @param {string} category - (optional)
+ * @param {string[]} tag - (optional)
+ * @returns { }
  */
-function DairyProduct() {}
+const addTodo = () => {}
 
 /**
- * Check whether the dairy product is solid at room temperature.
- * @abstract
- * @return {boolean}
+ * Todo를 조회할 수 있다.
+ * ID를 기반으로 특정 할 일을 조회할 수 있다.
+ * @construcor
+ * @param {string} id - (require)
+ * @returns {Todo}
  */
-DairyProduct.prototype.isSolid = function () {
-	throw new Error('must be implemented by subclass!');
-};
+const getTodo = () => {}
 
 /**
- * Cool, refreshing milk.
- * @constructor
- * @augments DairyProduct
+ * ID를 제외한 모든 속성을 수정할 수 있다.
+ * 특정 할 일의 특정 태그를 수정할 수 있다.
+ * @construcor
+ * @param {string} content - (require)
+ * @param {string} category - (optional)
+ * @param {string} isDone - (optional)
+ * @param {string} tag - (optional)
+ * @returns {void}
  */
-function Milk() {}
+const editTodo = () => {}
+
 
 /**
- * Check whether milk is solid at room temperature.
- * @return {boolean} Always returns false.
+ * ID를 기반으로 특정 할 일을 삭제할 수 있다.
+ * 모든 할 일을 제거할 수 있다.
+ * 특정 할 일의 특정 태그를 삭제할 수 있다.
+ * 특정 할 일의 모든 태그를 제거할 수 있다.
+ * @construcor
+ * @param {string} id - (require)
+ * @returns {void}
  */
-Milk.prototype.isSolid = function () {
-	return false;
-};
+const delTodo = (id) => {}
