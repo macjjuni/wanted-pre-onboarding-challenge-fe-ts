@@ -9,7 +9,7 @@
 
 <br/>
 
-### 1차 과제
+### 과제 목록
 
 - [x] 1-1 JSDoc
 - [x] 1-2 TypeScript
