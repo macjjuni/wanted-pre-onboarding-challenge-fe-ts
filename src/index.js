@@ -38,8 +38,8 @@ const getTodo = () => {}
  * 특정 할 일의 특정 태그를 수정할 수 있다.
  * @construcor
  * @param {string} content - (require)
+ * @param {string} isDone - (require)
  * @param {string} category - (optional)
- * @param {string} isDone - (optional)
  * @param {string} tag - (optional)
  * @returns {void}
  */
