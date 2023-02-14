@@ -95,5 +95,7 @@ export type deleteTodoTagType = (
 ```
 
 ### 해결 방법
-[src/type.ts](https://github.com/macjjuni/wanted-pre-onboarding-challenge-fe-ts/blob/week/2-1/src/type.ts#L60)
+
 잘못 된 타입과 "tags"를 제거하고 함수 로직에서 tags의 undefined 여부를 체크하지 않기 위해 옵셔널 체이닝을 삭제하는 방향으로 해결(함수에 버그가 있어 잠수함 패치한건 안비밀🥸)
+
+[src/type.ts](https://github.com/macjjuni/wanted-pre-onboarding-challenge-fe-ts/blob/week/2-1/src/type.ts#L60)
