@@ -1,74 +1,87 @@
-interface ITodoTag {
-  id: string
-  title: string
-}
-interface ITodoItem {
-  id: string
-  content: string
-  isDone: boolean
-  category: string
-  tag: ITodoTag[]
-}
-/** 
- * ----- CREATE -----
- * 할 일을 추가할 수 있다.
- * 내용없이 추가할 수 없다.
- */
-interface IAddTodoItem {
-  content: string
-  category?: string
-  tag?: string[]
-}
-type AddTodoTypes = (IAddTodoItem)=> void
+import type {
+  Tag,
+  Todo,
+  createTodoType,
+  readAllTodoType,
+  readTodoType,
+  updateTodoType,
+  deletetodoType,
+  deleteAllTodoType,
+  deleteTodoTagType,
+  deleteTodoAllTagType,
+} from "./type";
 
-/** 
- * ----- READ -----
- * 모든 할 일을 조회할 수 있다.
- * ID를 기반으로 특정 할 일을 조회할 수 있다.
- */
-type GetTodoTypes = (todoId: string) => ITodoItem
+const TodoList: Todo[] = [];
 
-/** 
- * ----- UPDATE -----
- * ID를 제외한 모든 속성을 수정할 수 있다.
- * 특정 할 일의 특정 태그를 수정할 수 있다.
- */
-interface IEditTodo {
-  content: string
-  isDone: boolean
-  category?: string
-  tag?: string[]
-}
-type EditTodoTypes = (IEditTodo) => void
+// Todo를 생성하는 함수입니다.
+const createTodo: createTodoType = async (param) => {
+  const newTodo = {
+    ...param,
+    id: (TodoList.length++).toString(),
+    isDone: false,
+  };
+  TodoList.push(newTodo);
+  return newTodo;
+};
 
-/** 
- * ----- DELETE -----
- * ID를 기반으로 특정 할 일을 삭제할 수 있다.
- * 모든 할 일을 제거할 수 있다.
- * 특정 할 일의 특정 태그를 삭제할 수 있다.
- * 특정 할 일의 모든 태그를 제거할 수 있다.
- */
-type DelTodoTypes = (todoId: string) => void
-type DelTodoTagsByIdTypes = (todoId: string, tagId: string[]) => void
+// 모든 Todo를 조회할 수 있습니다.
+const readAllTodo: readAllTodoType = async () => {
+  return TodoList;
+};
 
-{
-  const addTodo: AddTodoTypes = (todoItem) => {}
-  const getTodo:GetTodoTypes = (todoId) => {
-    console.log(todoId)
-    return {
-      id: '01',
-      content: 'todos..',
-      isDone: false,
-      category: 'etc',
-      tag: [{
-        id: '01',
-        title: 'TodoTag1'
-      }]
-    }
+// ID를 기반으로 특정 Todo를 조회할 수 있습니다.
+const readTodo: readTodoType = async ({ id }) => {
+  const targetTodo = TodoList.find((todo) => todo.id === id);
+  return targetTodo;
+};
+
+// ID를 제외한 모든 속성을 수정할 수 있습니다.
+// 특정 할 일의 특정 태그를 수정할 수 있습니다.
+const updateTodo: updateTodoType = async (todoData) => {
+  const targetIdx = TodoList.findIndex((todo) => todo.id === todoData.id);
+  if (targetIdx === -1) return undefined;
+  const updateTodo = {
+    ...TodoList[targetIdx],
+    ...todoData,
+  };
+  TodoList.splice(targetIdx, 1, updateTodo);
+  return updateTodo;
+};
+
+// ID를 기반으로 특정 할 일을 삭제할 수 있습니다.
+const deleteTodo: deletetodoType = async ({ id }) => {
+  const targetIdx = TodoList.findIndex((todo) => todo.id === id);
+  if (targetIdx === -1) return false;
+  const returnVal = TodoList[targetIdx];
+  TodoList.splice(targetIdx, 1);
+  return true;
+};
+
+// 모든 할 일을 제거할 수 있습니다.
+const deleteAllTodo: deleteAllTodoType = async () => {
+  try {
+    TodoList.splice(0);
+  } catch (e) {
+    console.error(e);
+    return false;
   }
-  const editTodo:EditTodoTypes = () => {}
-  const delTodo:DelTodoTypes = (todoId) => {}
-  const delAllTodo:DelTodoTypes = (todoId) => {}
-  const delTodoTagsById:DelTodoTagsByIdTypes = (todoId, tagId) => {}
-  const delTodoAllTags:DelTodoTypes = (todoId) => {}
-}
+  return true;
+};
+
+const deleteTodoTag: deleteTodoTagType = async ({ id, tags }) => {
+  const targetTodoIdx = TodoList.findIndex((todo) => todo.id === id);
+  if (targetTodoIdx === -1) return undefined;
+  const targetTagIndex =
+    TodoList[targetTodoIdx].tags?.findIndex((tag) => tag.id === tags) || -1;
+  if (targetTagIndex === -1) return undefined;
+  TodoList[targetTodoIdx].tags?.splice(targetTagIndex, 1);
+  return TodoList[targetTodoIdx];
+};
+
+// 특정 할 일의 모든 태그를 제거할 수 있습니다.
+const deleteTodlAllTag: deleteTodoAllTagType = async ({ id }) => {
+  const targetIdx = TodoList.findIndex((todo) => todo.id === id);
+  if (targetIdx === -1) return undefined;
+  TodoList[targetIdx].tags?.splice(0);
+  return TodoList[targetIdx];
+};

@@ -1,35 +1,27 @@
-# 원티드 프리온보딩 프론트엔드 챌린지 2월 과제(TypeScript)
+# 원티드 프리온보딩 프론트엔드 챌린지 2월 2-1 주차 과제(TypeScript)
 
-<br/>
-
-## 📕 챌린지 과제 가이드
+## 📕 프리온보딩 챌린지 가이드
 
 - [가이드 링크](https://gist.github.com/pocojang/3c3d4470a3d2a978b5ebfb3f613e40fa)
-
-> 요구 사항을 구현하지 않고 설계만합니다.
 
 <br/>
 
 ### 📖 과제 목록
 
-- [x] 1-1 JSDoc
-- [x] 1-2 TypeScript
-- [ ] 2-1 ..
+- [ ] 1-1 JSDoc 사용
+- [ ] 1-2 TypeScript 사용
+- [x] 2-1 구현
 - [ ] 2-2 ..
 
 <br>
 
-## 🤾🏻‍♂️ 챌린지 목표
+## 🤾🏻‍♂️ 2-1 주차 과제
 
-- 안 좋은 코드 습관 없애기
-- 스스로 코드를 점검 할 수 있는 체크리스트 만들기
-- 기술 면접 질문을 효과적으로 준비하기
-- 이직 뽀개기
+- 다른 참여자가 작성한 Todo 타입스크립트 설계를 바탕으로 구현(설계대로만 구현하는 것이 중요)
+- 잘못 된 경우 피드백 전달하기
 
 <br>
 
-## 📆 챌린지 기간
+## 🎯 구현 대상!
 
-- 23.02.06 ~ 23.02.19
-
-<br>
+- [src/index.ts](https://github.com/wogha95/wanted-pre-onboarding-challenge-fe-2/blob/2nd-requirements/src/index.ts)
