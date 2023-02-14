@@ -70,3 +70,30 @@ export type updateTodoType = (
 <br/>
 
 - 어째서 파라미터 타입이 never로 바뀌는지 알려주실분...
+
+## 🙇‍♂️ 질문 해결
+[issue](https://github.com/macjjuni/wanted-pre-onboarding-challenge-fe-ts/issues/1)
+<img width="904" alt="image" src="https://user-images.githubusercontent.com/38034518/218684051-ade39817-437d-407a-a290-f7d0622ccdab.png">
+
+### 수정 전
+
+```typescript
+export type deleteTodoTagType = (
+  param: Pick<Todo, "id" & "tags"> // Error : change to "id" & "tags" 
+) => Promise<Todo | undefined>;
+```
+### 수정 후
+
+```typescript
+export interface Tag {
+  id: string;
+  name: string;
+}
+export type deleteTodoTagType = (
+  param: Pick<Todo, "id"> & { tags: Tag[] }
+) => Promise<Todo | undefined>;
+```
+
+### 해결 방법
+[src/type.ts](https://github.com/macjjuni/wanted-pre-onboarding-challenge-fe-ts/blob/week/2-1/src/type.ts#L60)
+잘못 된 타입과 "tags"를 제거하고 함수 로직에서 tags의 undefined 여부를 체크하지 않기 위해 옵셔널 체이닝을 삭제하는 방향으로 해결(함수에 버그가 있어 잠수함 패치한건 안비밀🥸)
