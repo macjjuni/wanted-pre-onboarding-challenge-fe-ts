@@ -59,6 +59,10 @@ export type updateTodoType = (
 
 기능구현을 하면서 id에 맞는 Todo가 없는 경우(Delete, Update) 에러 안내를 위한 리턴 타입 추가(boolean | undefined)
 
+## 👍 느낀점
+
+> 타입스크립트를 사용하면서 타입 오류만 지우려고 급급했던 저 자신을 반성하게 됐습니다 🥲 유틸리티 타입을 잘 활용하신 해적거북님 덕분에 부족한 부분을 확인할 수 있는 계기가 됐고 깔끔하게 작성된 코드 덕분에 수월하게 공부했습니다.
+
 ## ❗️ 질문
 
 <img width="901" alt="image" src="https://user-images.githubusercontent.com/38034518/218653507-f14cb85d-35a4-4382-81f5-18d155305a34.png">
