@@ -26,7 +26,7 @@
 
 #### 특정 할 일의 특정 태그를 수정할 수 있습니다. (해적거북님이 작성한 타입)
 
-```
+```typescript
 export type updateTodoType = (
   param: Pick<Todo, "id"> & Partial<Omit<Todo, "id">>
 ) => Promise<Todo>;
@@ -34,7 +34,7 @@ export type updateTodoType = (
 
 #### updateTodo 기능 구현
 
-```
+```typescript
 const updateTodo: updateTodoType = async (todoData) => {
   const targetIdx = TodoList.findIndex((todo) => todo.id === todoData.id);
   if (targetIdx === -1) return undefined;
@@ -49,7 +49,7 @@ const updateTodo: updateTodoType = async (todoData) => {
 
 #### 리팩토링한 타입
 
-```
+```typescript
 export type updateTodoType = (
   param: Pick<Todo, "id"> & Partial<Omit<Todo, "id">>
 ) => Promise<Todo | undefined>;
